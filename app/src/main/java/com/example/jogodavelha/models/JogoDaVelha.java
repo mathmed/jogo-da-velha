@@ -23,6 +23,10 @@ public class JogoDaVelha {
         }
         return false;
     }
+    public int getAtual(){
+
+        return this.atual;
+    }
 
     // insere um valor na matriz
     public int insert(int x , int y ){
