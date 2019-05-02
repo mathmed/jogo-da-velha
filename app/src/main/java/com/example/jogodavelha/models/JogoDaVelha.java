@@ -11,6 +11,16 @@ public class JogoDaVelha {
         this.campo = new int[3][3];
         this.atual = 1;
         this.totalJogadas = 9;
+        this.zerarMatriz();
+    }
+
+    public void zerarMatriz(){
+        for (int i = 0 ; i <3 ;i++){
+            for(int j= 0 ; j<3 ; j++){
+                this.campo[i][j] = -1;
+            }
+
+        }
     }
 
     // verifica se o jogo terminou!
@@ -23,11 +33,16 @@ public class JogoDaVelha {
         }
         return false;
     }
+    public void restoreTotalJogadas(){
+        this.totalJogadas = 9;
+    }
     public int getAtual(){
 
         return this.atual;
     }
-
+    public int getTotalJogadas(){
+        return this.totalJogadas;
+    }
     // insere um valor na matriz
     public int insert(int x , int y ){
         this.campo[x][y] = this.atual;
@@ -40,30 +55,30 @@ public class JogoDaVelha {
     {
         // linha superior
         if (campo[0][0] == campo[0][1] && campo[0][1] == campo[0][2]){
-            return true;
+            return campo[0][0] != -1;
         }
         // diagonal principal
         if(campo[0][0] == campo[1][1] && campo[1][1] == campo[2][2]){
-            return true;
+            return campo[0][0] != -1;
         }
         // coluna direita
         if(campo[0][0] == campo[1][0] && campo[1][0] == campo[2][0]){
-            return true;
+            return campo[0][0] != -1;
         }
         if(campo[0][1] == campo[1][1] && campo[1][1]==campo[2][1]){
-            return true;
+            return campo[0][1] != -1;
         }
         if (campo[0][2]== campo[1][2] && campo[1][2] == campo[2][2]){
-            return true;
+            return campo[0][2] != -1;
         }
         if(campo[0][2] == campo[1][1] && campo[1][1] == campo[2][0]){
-            return  true;
+            return campo[0][2] != -1;
         }
         if (campo[1][0] == campo[1][1] && campo[1][1] == campo[1][2]){
-            return true;
+            return campo[1][0] != -1;
         }
         if(campo[2][0] == campo[2][1] && campo[2][1] == campo[2][2]){
-            return true;
+            return campo[2][0] != -1;
         }
         return false;
     }

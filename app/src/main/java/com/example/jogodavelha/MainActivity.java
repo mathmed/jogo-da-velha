@@ -1,5 +1,7 @@
 package com.example.jogodavelha;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
         pos20 = (ImageView) findViewById(R.id.pos20);
         pos21 = (ImageView) findViewById(R.id.pos21);
         pos22 = (ImageView) findViewById(R.id.pos22);
+
         tv_vez = (TextView) findViewById(R.id.tv_vez);
         this.initEventos();
 
@@ -51,76 +54,106 @@ public class MainActivity extends AppCompatActivity {
         this.pos00.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos00.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(0 , 0);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos00, 0 , 0);
             }
         });
         this.pos01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos01.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(0 , 1);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
-            }
+                MainActivity.this.jogar(pos01, 0 , 1);
+                }
         });
         this.pos02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos02.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(0 , 2);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos02, 0 , 2);
             }
         });
         this.pos10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos10.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(1 , 0);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos10, 1 , 0);
             }
         });
         this.pos11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos11.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(1 , 1);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos11, 1, 1);
             }
         });
         this.pos12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos12.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(1 , 2);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos12, 1 , 2);
             }
         });
         this.pos20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos20.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(2 , 0);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos20, 2 , 0);
             }
         });
         this.pos21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos21.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(2 , 1);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+                MainActivity.this.jogar(pos21, 2 , 1);
             }
         });
         this.pos22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos22.setImageResource(MainActivity.this.controller.JogadorDavez());
-                MainActivity.this.controller.fazerJogada(2 , 2);
-                MainActivity.this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+
+                MainActivity.this.jogar(pos22, 2 , 2);
+
             }
         });
     }
+    public void jogar(ImageView img,int x, int y){
+        img.setImageResource(MainActivity.this.controller.JogadorDavez());
+        if (this.controller.fazerJogada(x, y)){
+            this.finishGame();
+            this.tv_vez.setText("Era pra ter terminado");
+        }else {
+            this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+        }
+    }
+    public void finishGame()
+    {
+        if(this.controller.jogoTruncado()){
+            new AlertDialog.Builder(this).setTitle("O jogo finalizou").setMessage("Clique em continuar para inicar outra partida!").
+                    setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.this.clearGame();
+                        }
+                    }).show();
+
+        }else {
+            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("Um dos jogadores venceu! clique em continuar ").
+                    setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    MainActivity.this.clearGame();
+
+                }
+            }).show();
+        }
+
+    }
+
+    public void clearGame(){
+        this.pos00.setImageResource(0);
+        this.pos01.setImageResource(0);
+        this.pos02.setImageResource(0);
+        this.pos10.setImageResource(0);
+        this.pos11.setImageResource(0);
+        this.pos12.setImageResource(0);
+        this.pos20.setImageResource(0);
+        this.pos21.setImageResource(0);
+        this.pos22.setImageResource(0);
+        this.controller.restartGame();
 
 
+
+    }
 }
