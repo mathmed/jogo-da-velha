@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         pos20 = (ImageView) findViewById(R.id.pos20);
         pos21 = (ImageView) findViewById(R.id.pos21);
         pos22 = (ImageView) findViewById(R.id.pos22);
+        this.initEventos();
 
 
     }
@@ -48,55 +49,63 @@ public class MainActivity extends AppCompatActivity {
         this.pos00.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos00.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(0 , 0);
             }
         });
         this.pos01.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos01.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(0 , 1);
             }
         });
         this.pos02.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos02.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(0 , 2);
             }
         });
         this.pos10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos10.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(1 , 0);
             }
         });
         this.pos11.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MainActivity.this.pos11.setImageResource(MainActivity.this.controller.getAtual());
+                MainActivity.this.pos11.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(1 , 1);
             }
         });
         this.pos12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos12.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(1 , 2);
             }
         });
         this.pos20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos20.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(2 , 0);
             }
         });
         this.pos21.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos21.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(2 , 1);
             }
         });
         this.pos22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                MainActivity.this.pos22.setImageResource(MainActivity.this.controller.vez());
                 MainActivity.this.controller.fazerJogada(2 , 2);
             }
         });

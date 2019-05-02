@@ -13,7 +13,7 @@ public class ControllerJogoDaVelha {
     public void fazerJogada(int x, int y){
         game.insert(x, y );
     }
-    public int getAtual(){
+    public int vez(){
         if (game.getAtual() == 1){
             return  (R.drawable.red_x);
         }
