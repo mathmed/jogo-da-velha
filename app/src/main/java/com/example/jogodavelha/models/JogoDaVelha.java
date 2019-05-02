@@ -51,7 +51,7 @@ public class JogoDaVelha {
         return this.atual;
     }
     // verfica todas as possibilidades de alguem ter vencido o jogo
-    private boolean isTerminated()
+    public boolean isTerminated()
     {
         // linha superior
         if (campo[0][0] == campo[0][1] && campo[0][1] == campo[0][2]){

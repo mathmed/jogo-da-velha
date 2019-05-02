@@ -112,31 +112,35 @@ public class MainActivity extends AppCompatActivity {
         img.setImageResource(MainActivity.this.controller.JogadorDavez());
         if (this.controller.fazerJogada(x, y)){
             this.finishGame();
-            this.tv_vez.setText("Era pra ter terminado");
+            this.tv_vez.setText(R.string.finishGame);
         }else {
-            this.tv_vez.setText(getString(MainActivity.this.controller.atual()));
+
+            this.tv_vez.setText(getString(R.string.agoraEaVez)+" : "+ getString(MainActivity.this.controller.atual()));
         }
     }
     public void finishGame()
     {
-        if(this.controller.jogoTruncado()){
-            new AlertDialog.Builder(this).setTitle("O jogo finalizou").setMessage("Clique em continuar para inicar outra partida!").
+        if(this.controller.haveWinner()){
+            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("O jogador com "+getString(this.controller.anterior())+" venceu! clique em continuar ").
                     setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             MainActivity.this.clearGame();
+                            MainActivity.this.tv_vez.setText(getString(R.string.agoraEaVez)+ getString(MainActivity.this.controller.atual()));
+
                         }
                     }).show();
 
         }else {
-            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("Um dos jogadores venceu! clique em continuar ").
+            new AlertDialog.Builder(this).setTitle("O jogo finalizou sem vencedor").setMessage("Clique em continuar para inicar outra partida!").
                     setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialog, int which) {
-                    MainActivity.this.clearGame();
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            MainActivity.this.clearGame();
+                            MainActivity.this.tv_vez.setText(getString(R.string.agoraEaVez)+ getString(MainActivity.this.controller.atual()));
+                        }
+                    }).show();
 
-                }
-            }).show();
         }
 
     }

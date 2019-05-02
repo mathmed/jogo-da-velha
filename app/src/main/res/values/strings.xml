@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Jogo da Velha</string>
-    <string name="vezX">Agora é a vez do X</string>
-    <string name="vezO">Agora é a vez do O</string>
-
+    <string name="vezX">X</string>
+    <string name="vezO">O</string>
+    <string name="agoraEaVez">Agora é a vez de</string>
+    <string name="finishGame">Jogo finalizado</string>
 </resources>

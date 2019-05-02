@@ -31,11 +31,20 @@ public class ControllerJogoDaVelha {
         }
         return (R.drawable.red_o);
     }
+
     public int atual(){
         if (this.game.getAtual() == 1){
             return (R.string.vezX);
         }
         return R.string.vezO;
     }
-
+    public int anterior(){
+        if (this.game.getAtual() == 1){
+            return (R.string.vezO);
+        }
+        return R.string.vezX;
+    }
+    public boolean haveWinner(){
+        return this.game.isTerminated();
+    }
 }
