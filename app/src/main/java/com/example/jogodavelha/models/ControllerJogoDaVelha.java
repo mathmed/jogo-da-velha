@@ -9,11 +9,18 @@ public class ControllerJogoDaVelha {
         //this.view = new MainActivity();
         this.game = new JogoDaVelha();
     }
-    public boolean fazerJogada(int x, int y)
+    public int fazerJogada(int x, int y)
     {
-        this.game.insert(x, y );
-        return this.game.endGame();
-    }
+        if(this.game.getAtual() == this.game.insert(x, y )){
+            return 1;
+
+        }
+        if (this.game.endGame()){
+            return 2;
+        }
+        return 0;
+
+    };
 
   //  public boolean winner(){
 //        return this.game.isTerminated();
@@ -39,7 +46,7 @@ public class ControllerJogoDaVelha {
         return R.string.vezO;
     }
     public int anterior(){
-        if (this.game.getAtual() == 1){
+        if (this.game.getAnterior() == 0){
             return (R.string.vezO);
         }
         return R.string.vezX;

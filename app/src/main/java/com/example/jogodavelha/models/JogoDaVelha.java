@@ -4,12 +4,14 @@ public class JogoDaVelha {
 
     private int campo[][];
     private int atual;
+    private int anterior;
     private int totalJogadas;
 
     public JogoDaVelha()
     {
         this.campo = new int[3][3];
         this.atual = 1;
+        this.anterior = 0;
         this.totalJogadas = 9;
         this.zerarMatriz();
     }
@@ -45,10 +47,16 @@ public class JogoDaVelha {
     }
     // insere um valor na matriz
     public int insert(int x , int y ){
-        this.campo[x][y] = this.atual;
-        this.atual = (this.atual+1)%2;
-        this.totalJogadas -- ;
+        if(this.campo[x][y] == -1){
+            this.campo[x][y] = this.atual;
+            this.anterior = this.atual;
+            this.atual = (this.atual+1)%2;
+            this.totalJogadas -- ;
+        }
         return this.atual;
+    }
+    public int getAnterior(){
+        return this.anterior;
     }
     // verfica todas as possibilidades de alguem ter vencido o jogo
     public boolean isTerminated()

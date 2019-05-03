@@ -109,19 +109,19 @@ public class MainActivity extends AppCompatActivity {
         });
     }
     public void jogar(ImageView img,int x, int y){
-        img.setImageResource(MainActivity.this.controller.JogadorDavez());
-        if (this.controller.fazerJogada(x, y)){
+        int i =this.controller.fazerJogada(x, y);
+        if (i == 2){
             this.finishGame();
             this.tv_vez.setText(R.string.finishGame);
-        }else {
-
-            this.tv_vez.setText(getString(R.string.agoraEaVez)+" : "+ getString(MainActivity.this.controller.atual()));
+        }else if(i == 0 ){
+            img.setImageResource(MainActivity.this.controller.JogadorDavez());
+            this.tv_vez.setText(getString(R.string.agoraEaVez)+" : "+ getString(MainActivity.this.controller.anterior()));
         }
     }
     public void finishGame()
     {
         if(this.controller.haveWinner()){
-            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("O jogador com "+getString(this.controller.anterior())+" venceu! clique em continuar ").
+            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("O jogador com "+getString(this.controller.atual())+" venceu! clique em continuar ").
                     setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
