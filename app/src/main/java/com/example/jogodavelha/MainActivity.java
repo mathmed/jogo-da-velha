@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
     public void finishGame()
     {
         if(this.controller.haveWinner()){
-            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("O jogador com "+getString(this.controller.atual())+" venceu! clique em continuar ").
+            new AlertDialog.Builder(this).setTitle("Há um vencedor").setMessage("O jogador com "+getString(this.controller.atual())+" venceu! clique em continuar ").setCancelable(false).
                     setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
                     }).show();
 
         }else {
-            new AlertDialog.Builder(this).setTitle("O jogo finalizou sem vencedor").setMessage("Clique em continuar para inicar outra partida!").
+            new AlertDialog.Builder(this).setTitle("O jogo finalizou sem vencedor").setMessage("Clique em continuar para inicar outra partida!").setCancelable(false).
                     setPositiveButton("Continuar", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
